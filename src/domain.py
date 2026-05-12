@@ -33,8 +33,8 @@ class Question(BaseModel):
     created_date: datetime = utc_field_now()
     content: str
 
-class Choice(BaseModel):
-    id: identifiers.ChoiceId = identifiers.new_choice_id()
+class Answer(BaseModel):
+    id: identifiers.AnswerId = identifiers.new_answer_id()
     question_id: identifiers.QuestionId
     created_date: datetime = utc_field_now()
     content: str
