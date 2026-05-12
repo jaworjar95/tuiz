@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from datetime import datetime, timezone
 import identifiers
 
@@ -34,6 +34,7 @@ class Question(BaseModel):
     content: str
 
 class Answer(BaseModel):
+    model_config = ConfigDict(frozen=True)
     id: identifiers.AnswerId = identifiers.new_answer_id()
     question_id: identifiers.QuestionId
     created_date: datetime = utc_field_now()
