@@ -10,28 +10,28 @@ def utc_field_now(): # TODO: Could be moved to seprate file like fields.py
     return Field(default_factory=lambda: datetime.now(timezone.utc), frozen=True)
 
 class User(BaseModel):
-    id: UserId = new_user_id()
+    id: UserId = Field(default_factory=new_user_id)
     created_date: datetime = utc_field_now()
     name: str
 
 class Category(BaseModel):
-    id: CategoryId = new_category_id()
+    id: CategoryId = Field(default_factory=new_category_id)
     created_date: datetime = utc_field_now()
     name: str
 
 class Topic(BaseModel):
-    id: TopicId = new_topic_id()
+    id: TopicId = Field(default_factory=new_topic_id)
     category_id: CategoryId
     created_date: datetime = utc_field_now()
     name: str
 
 class Quiz(BaseModel):
-    id: QuizId = new_quiz_id()
+    id: QuizId = Field(default_factory=new_quiz_id)
     created_date: datetime = utc_field_now()
     name: str
 
 class Question(BaseModel):
-    id: QuestionId = new_question_id()
+    id: QuestionId = Field(default_factory=new_question_id)
     category_id: CategoryId
     topic_id: TopicId | None = None
     created_date: datetime = utc_field_now()
@@ -39,7 +39,7 @@ class Question(BaseModel):
 
 class Answer(BaseModel):
     model_config = ConfigDict(frozen=True)
-    id: AnswerId = new_answer_id()
+    id: AnswerId = Field(default_factory=new_answer_id)
     question_id: QuestionId
     created_date: datetime = utc_field_now()
     content: str
