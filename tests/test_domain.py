@@ -1,4 +1,4 @@
-from domain import Answer, Category, Question, Topic
+from tuiz.domain import Answer, Category, Question, Topic, User
 from pydantic import ValidationError
 import pytest
 
@@ -22,3 +22,8 @@ def answer(question):
 def test_answer_is_immutable(answer):
     with pytest.raises(ValidationError):
         answer.content = "Germany"
+
+def test_have_distinct_ids():
+    user1 = User(name="Jan")
+    user2 = User(name="John")
+    assert user1.id != user2.id
