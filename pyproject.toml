@@ -13,7 +13,9 @@ dev = [
     "pytest>=9.0.3",
     "ruff>=0.15.12",
 ]
-
+#----------------------
+# TODO: Those lines are copy-pasted from the Claude Code. They let me use `uv run tuix`
+#       But I don't fully understand them. Please learn what they do!
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
@@ -23,6 +25,7 @@ packages = ["src/tuiz"]
 
 [project.scripts]
 tuiz = "tuiz.__main__:main"
+#----------------------
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
