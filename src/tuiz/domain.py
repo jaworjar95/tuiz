@@ -2,35 +2,35 @@ from pydantic import BaseModel, ConfigDict, Field
 from datetime import datetime, timezone
 from .identifiers import (
     CategoryId, TopicId, QuestionId,
-    UserIdField, CategoryIdField, TopicIdField, QuizIdField, QuestionIdField, AnswerIdField
+    UserIdDefault, CategoryIdDefault, TopicIdDefault, QuizIdDefault, QuestionIdDefault, AnswerIdDefult
   )
 
 def utc_field_now(): # TODO: Could be moved to seprate file like fields.py
     return Field(default_factory=lambda: datetime.now(timezone.utc), frozen=True)
 
 class User(BaseModel):
-    id: UserIdField
+    id: UserIdDefault
     created_date: datetime = utc_field_now()
     name: str
 
 class Category(BaseModel):
-    id: CategoryIdField
+    id: CategoryIdDefault
     created_date: datetime = utc_field_now()
     name: str
 
 class Topic(BaseModel):
-    id: TopicIdField
-    category_id: CategoryIdField
+    id: TopicIdDefault
+    category_id: CategoryIdDefault
     created_date: datetime = utc_field_now()
     name: str
 
 class Quiz(BaseModel):
-    id: QuizIdField
+    id: QuizIdDefault
     created_date: datetime = utc_field_now()
     name: str
 
 class Question(BaseModel):
-    id: QuestionIdField
+    id: QuestionIdDefault
     category_id: CategoryId
     topic_id: TopicId | None = None
     created_date: datetime = utc_field_now()
@@ -38,7 +38,7 @@ class Question(BaseModel):
 
 class Answer(BaseModel):
     model_config = ConfigDict(frozen=True)
-    id: AnswerIdField
+    id: AnswerIdDefult
     question_id: QuestionId
     created_date: datetime = utc_field_now()
     content: str
