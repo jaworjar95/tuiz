@@ -22,5 +22,5 @@ CategoryIdDefault = Annotated[CategoryId, Field(default_factory=new_category_id)
 TopicIdDefault    = Annotated[TopicId,    Field(default_factory=new_topic_id)]
 QuizIdDefault     = Annotated[QuizId,     Field(default_factory=new_quiz_id)]
 QuestionIdDefault = Annotated[QuestionId, Field(default_factory=new_question_id)]
-AnswerIdDefult   = Annotated[AnswerId,   Field(default_factory=new_answer_id)]
+AnswerIdDefault   = Annotated[AnswerId,   Field(default_factory=new_answer_id)]
 
