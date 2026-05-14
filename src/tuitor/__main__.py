@@ -1,4 +1,4 @@
-from tuiz.domain import User, Category, Topic, Quiz, Question, Answer
+from tuitor.domain import User, Category, Topic, Quiz, Question, Answer
 
 def main():
     user = User(name="Jarek")

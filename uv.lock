@@ -154,7 +154,7 @@ wheels = [
 ]
 
 [[package]]
-name = "tuiz"
+name = "tuitor"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [

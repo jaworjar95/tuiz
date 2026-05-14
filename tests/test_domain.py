@@ -1,4 +1,4 @@
-from tuiz.domain import Answer, Category, Question, Topic, User
+from tuitor.domain import Answer, Category, Question, Topic, User
 from pydantic import ValidationError
 import pytest
 
