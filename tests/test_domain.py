@@ -17,7 +17,7 @@ def question(category, topic):
 
 @pytest.fixture
 def answer(question):
-    return Answer(question_id=question.id, content="France")
+    return Answer(content="France")
 
 def test_answer_is_immutable(answer):
     with pytest.raises(ValidationError):
