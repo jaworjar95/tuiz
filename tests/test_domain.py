@@ -1,7 +1,6 @@
-from tuitor.domain import Answer, Category, Question, Topic, User
+from tuitor.domain import Answer, Category, Question, Topic, User, Evaluation
 from pydantic import ValidationError
 import pytest
-
 
 @pytest.fixture
 def category():
@@ -17,7 +16,7 @@ def question(category, topic):
 
 @pytest.fixture
 def answer(question):
-    return Answer(content="France")
+    return Answer(content="France", attempt_number=1)
 
 def test_answer_is_immutable(answer):
     with pytest.raises(ValidationError):
@@ -27,3 +26,9 @@ def test_user_have_unique_ids():
     user1 = User(name="Jan")
     user2 = User(name="John")
     assert user1.id != user2.id
+
+def test_evaluation_ranking_is_within_boundaries():
+    with pytest.raises(ValidationError):
+        eval = Evaluation(content="Got it SOOOO right", rating=11)
+        eval = Evaluation(content="Got it SOOOO wrong", rating=0)
+

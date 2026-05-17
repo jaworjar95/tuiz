@@ -1,5 +1,5 @@
 from pydantic import BaseModel, ConfigDict, Field
-from datetime import datetime, timezone
+from typing import Annotated
 from .identifiers import (
     CategoryId, TopicId, UserId, QuizId, QuestionId, QuestionAttemptId, QuizAttemptId,
     new_user_id, new_category_id, new_topic_id, new_quiz_id, new_question_id, new_question_attempt_id, new_quiz_attempt_id,
@@ -30,13 +30,15 @@ class Question(BaseModel):
 
 class Evaluation(BaseModel):
     model_config = ConfigDict(frozen=True)
-    rating: int
+    rating: Annotated[int, Field(gt=0, lt=11)]
     content: str
-    hint: str
+    hint: str | None = None
 
 class Answer(BaseModel):
     model_config = ConfigDict(frozen=True)
     content: str
+    attempt_number: int
+    evaluation: Evaluation | None = None
 
 
 class QuestionAttempt(BaseModel):
